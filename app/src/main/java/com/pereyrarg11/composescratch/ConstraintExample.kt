@@ -11,7 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 
-@Preview
 @Composable
 fun MyConstraintLayout() {
     ConstraintLayout(Modifier.fillMaxSize()) {
@@ -57,6 +56,24 @@ fun MyConstraintLayout() {
             .constrainAs(greenBox) {
                 end.linkTo(redBox.start)
                 top.linkTo(redBox.bottom)
+            })
+    }
+}
+
+@Preview
+@Composable
+fun GuidelineConstraintLayout() {
+    ConstraintLayout(Modifier.fillMaxSize()) {
+        val topGuide = createGuidelineFromTop(0.1f)
+        val startGuide = createGuidelineFromStart(0.25f)
+
+        val redBox = createRef()
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Red)
+            .constrainAs(redBox) {
+                top.linkTo(topGuide)
+                start.linkTo(startGuide)
             })
     }
 }
