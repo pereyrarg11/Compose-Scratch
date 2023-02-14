@@ -60,7 +60,6 @@ fun MyConstraintLayout() {
     }
 }
 
-@Preview
 @Composable
 fun GuidelineConstraintLayout() {
     ConstraintLayout(Modifier.fillMaxSize()) {
@@ -74,6 +73,37 @@ fun GuidelineConstraintLayout() {
             .constrainAs(redBox) {
                 top.linkTo(topGuide)
                 start.linkTo(startGuide)
+            })
+    }
+}
+
+@Preview
+@Composable
+fun BarrierConstraintLayout() {
+    ConstraintLayout(Modifier.fillMaxSize()) {
+        val (redBox, greenBox, yellowBox) = createRefs()
+        val barrier = createEndBarrier(redBox, greenBox)
+
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Red)
+            .constrainAs(redBox) {
+                start.linkTo(parent.start, margin = 16.dp)
+            })
+
+        Box(modifier = Modifier
+            .size(235.dp)
+            .background(Color.Green)
+            .constrainAs(greenBox) {
+                top.linkTo(redBox.bottom)
+                start.linkTo(parent.start, margin = 32.dp)
+            })
+
+        Box(modifier = Modifier
+            .size(50.dp)
+            .background(Color.Yellow)
+            .constrainAs(yellowBox) {
+                start.linkTo(barrier)
             })
     }
 }
