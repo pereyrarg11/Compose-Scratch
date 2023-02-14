@@ -31,9 +31,57 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //MyBox()
                     //MyColumn()
-                    MyRow()
+                    //MyRow()
+                    MyComplexLayout()
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun MyComplexLayout() {
+    Column(Modifier.fillMaxSize()) {
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Cyan),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Cyan")
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(Color.Red),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Red")
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(Color.Green), contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Green")
+            }
+        }
+        Box(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Magenta),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Text(text = "Magenta")
         }
     }
 }
@@ -43,25 +91,38 @@ fun MyRow() {
     Row(
         Modifier
             .fillMaxSize()
-            .horizontalScroll(rememberScrollState())) {
-        Text(text = "Ejemplo 1", modifier = Modifier
-            .background(Color.Cyan)
-            .width(100.dp))
-        Text(text = "Ejemplo 2", modifier = Modifier
-            .background(Color.Yellow)
-            .width(100.dp))
-        Text(text = "Ejemplo 3", modifier = Modifier
-            .background(Color.Green)
-            .width(100.dp))
-        Text(text = "Ejemplo 4", modifier = Modifier
-            .background(Color.Red)
-            .width(100.dp))
-        Text(text = "Ejemplo 5", modifier = Modifier
-            .background(Color.Blue)
-            .width(100.dp))
-        Text(text = "Ejemplo 6", modifier = Modifier
-            .background(Color.Gray)
-            .width(100.dp))
+            .horizontalScroll(rememberScrollState())
+    ) {
+        Text(
+            text = "Ejemplo 1", modifier = Modifier
+                .background(Color.Cyan)
+                .width(100.dp)
+        )
+        Text(
+            text = "Ejemplo 2", modifier = Modifier
+                .background(Color.Yellow)
+                .width(100.dp)
+        )
+        Text(
+            text = "Ejemplo 3", modifier = Modifier
+                .background(Color.Green)
+                .width(100.dp)
+        )
+        Text(
+            text = "Ejemplo 4", modifier = Modifier
+                .background(Color.Red)
+                .width(100.dp)
+        )
+        Text(
+            text = "Ejemplo 5", modifier = Modifier
+                .background(Color.Blue)
+                .width(100.dp)
+        )
+        Text(
+            text = "Ejemplo 6", modifier = Modifier
+                .background(Color.Gray)
+                .width(100.dp)
+        )
     }
 }
 
@@ -168,6 +229,7 @@ fun DefaultPreview() {
     ComposeScratchTheme {
         //MyBox()
         //MyColumn()
-        MyRow()
+        //MyRow()
+        MyComplexLayout()
     }
 }
