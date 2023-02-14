@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -29,10 +30,38 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     //MyBox()
-                    MyColumn()
+                    //MyColumn()
+                    MyRow()
                 }
             }
         }
+    }
+}
+
+@Composable
+fun MyRow() {
+    Row(
+        Modifier
+            .fillMaxSize()
+            .horizontalScroll(rememberScrollState())) {
+        Text(text = "Ejemplo 1", modifier = Modifier
+            .background(Color.Cyan)
+            .width(100.dp))
+        Text(text = "Ejemplo 2", modifier = Modifier
+            .background(Color.Yellow)
+            .width(100.dp))
+        Text(text = "Ejemplo 3", modifier = Modifier
+            .background(Color.Green)
+            .width(100.dp))
+        Text(text = "Ejemplo 4", modifier = Modifier
+            .background(Color.Red)
+            .width(100.dp))
+        Text(text = "Ejemplo 5", modifier = Modifier
+            .background(Color.Blue)
+            .width(100.dp))
+        Text(text = "Ejemplo 6", modifier = Modifier
+            .background(Color.Gray)
+            .width(100.dp))
     }
 }
 
@@ -138,6 +167,7 @@ fun MyBox() {
 fun DefaultPreview() {
     ComposeScratchTheme {
         //MyBox()
-        MyColumn()
+        //MyColumn()
+        MyRow()
     }
 }
