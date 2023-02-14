@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
@@ -77,7 +78,6 @@ fun GuidelineConstraintLayout() {
     }
 }
 
-@Preview
 @Composable
 fun BarrierConstraintLayout() {
     ConstraintLayout(Modifier.fillMaxSize()) {
@@ -105,5 +105,39 @@ fun BarrierConstraintLayout() {
             .constrainAs(yellowBox) {
                 start.linkTo(barrier)
             })
+    }
+}
+
+@Preview
+@Composable
+fun ChainConstraintLayout() {
+    ConstraintLayout(Modifier.fillMaxSize()) {
+        val (redBox, greenBox, yellowBox) = createRefs()
+
+        Box(modifier = Modifier
+            .size(50.dp)
+            .background(Color.Yellow)
+            .constrainAs(yellowBox) {
+                start.linkTo(parent.start)
+                end.linkTo(redBox.start)
+            })
+
+        Box(modifier = Modifier
+            .size(50.dp)
+            .background(Color.Red)
+            .constrainAs(redBox) {
+                start.linkTo(yellowBox.end)
+                end.linkTo(greenBox.start)
+            })
+
+        Box(modifier = Modifier
+            .size(50.dp)
+            .background(Color.Green)
+            .constrainAs(greenBox) {
+                start.linkTo(redBox.end)
+                end.linkTo(parent.end)
+            })
+
+        createHorizontalChain(redBox, greenBox, yellowBox, chainStyle = ChainStyle.SpreadInside)
     }
 }
