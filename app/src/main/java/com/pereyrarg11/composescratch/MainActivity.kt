@@ -51,6 +51,7 @@ fun MyComplexLayout() {
         ) {
             Text(text = "Cyan")
         }
+        MyVerticalSpacer(height = 15)
         Row(
             Modifier
                 .fillMaxWidth()
@@ -65,6 +66,7 @@ fun MyComplexLayout() {
             ) {
                 Text(text = "Red")
             }
+            MyHorizontalSpacer(width = 50)
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -74,6 +76,7 @@ fun MyComplexLayout() {
                 Text(text = "Green")
             }
         }
+        MyVerticalSpacer(height = 30)
         Box(
             Modifier
                 .fillMaxWidth()
@@ -84,6 +87,22 @@ fun MyComplexLayout() {
             Text(text = "Magenta")
         }
     }
+}
+
+@Composable
+fun MyVerticalSpacer(height: Int) {
+    Spacer(modifier = Modifier
+        .height(height.dp)
+        .fillMaxWidth()
+        .background(Color.Black))
+}
+
+@Composable
+fun MyHorizontalSpacer(width: Int) {
+    Spacer(modifier = Modifier
+        .width(width.dp)
+        .fillMaxHeight()
+        .background(Color.Gray))
 }
 
 @Composable
