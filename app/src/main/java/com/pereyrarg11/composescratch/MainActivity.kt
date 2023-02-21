@@ -8,10 +8,15 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,7 +37,8 @@ class MainActivity : ComponentActivity() {
                     //MyBox()
                     //MyColumn()
                     //MyRow()
-                    MyComplexLayout()
+                    //MyComplexLayout()
+                    MyState()
                 }
             }
         }
@@ -86,6 +92,23 @@ fun MyComplexLayout() {
         ) {
             Text(text = "Magenta")
         }
+    }
+}
+
+@Composable
+fun MyState() {
+    // rememberSaveable saves date across config changes (like device orientation)
+    var counter by rememberSaveable { mutableStateOf(0) }
+
+    Column(
+        Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = { counter += 1 }) {
+            Text(text = "Pulsar")
+        }
+        Text(text = "He sido pulsado $counter veces")
     }
 }
 
@@ -249,6 +272,7 @@ fun DefaultPreview() {
         //MyBox()
         //MyColumn()
         //MyRow()
-        MyComplexLayout()
+        //MyComplexLayout()
+        MyState()
     }
 }
